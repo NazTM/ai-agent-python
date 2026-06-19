@@ -12,10 +12,32 @@ def save_to_txt(data: str, filename: str = "research_output.txt"):
     
     return f"Data successfully saved to {filename}"
 
+def load_from_txt(filename: str = "research_output.txt"):
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        return "No research output found."
+
+def get_current_date():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+date_tool = Tool(
+    name="current_date",
+    func=get_current_date,
+    description="Returns the current date and time in YYYY-MM-DD HH:MM:SS format"
+)
+
 save_tool = Tool(
     name="save",
     func=save_to_txt,
     description="Saves structured response to text file"
+)
+
+load_tool = Tool(
+    name="load",
+    func=load_from_txt,
+    description="Loads previously saved structured response from text file"
 )
 
 search = DuckDuckGoSearchRun()
