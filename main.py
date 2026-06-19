@@ -48,10 +48,10 @@ prompt = ChatPromptTemplate.from_messages(
         (
             "system",
             """
-            You are a research assistant that will help generate a research paper.
-            Answer the user query and use neccessary tools. 
+            You are a research assistant. For every query, you MUST use the search and wiki tools to gather information — do not answer from memory alone.
             Wrap the output in this format and provide no other text\n{format_instructions}
             """,
+
         ),
         ("placeholder", "{chat_history}"),
         ("human", "{query}"),
